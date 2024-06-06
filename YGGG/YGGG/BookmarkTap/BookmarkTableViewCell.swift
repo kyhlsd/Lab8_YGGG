@@ -10,14 +10,16 @@ import UIKit
 class BookmarkTableViewCell: UITableViewCell {
     
     private lazy var userPhotoView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "userPhoto")
-        return imageView
+        let userPhotoView = UIImageView()
+        userPhotoView.image = UIImage(named: "userPhoto")
+        userPhotoView.translatesAutoresizingMaskIntoConstraints = false
+        return userPhotoView
     }()
     
     private lazy var usernameLabel: UILabel = {
        let usernameLabel = UILabel()
         usernameLabel.font = UIFont.systemFont(ofSize: 19, weight: .bold)
+        usernameLabel.translatesAutoresizingMaskIntoConstraints = false
         return usernameLabel
     }()
     
@@ -25,12 +27,14 @@ class BookmarkTableViewCell: UITableViewCell {
         let userHashTagLabel = UILabel()
         userHashTagLabel.font = UIFont.systemFont(ofSize: 12)
         userHashTagLabel.textColor = UIColor(red: 0.73, green: 0.73, blue: 0.73, alpha: 1)
+        userHashTagLabel.translatesAutoresizingMaskIntoConstraints = false
         return userHashTagLabel
     }()
     
     private lazy var userItemCountLabel: UILabel = {
        let userItemCountLabel = UILabel()
         userItemCountLabel.font = UIFont.systemFont(ofSize: 12)
+        userItemCountLabel.translatesAutoresizingMaskIntoConstraints = false
         return userItemCountLabel
     }()
     
@@ -38,22 +42,25 @@ class BookmarkTableViewCell: UITableViewCell {
         let bookmarkHeartView = UIImageView()
         bookmarkHeartView.image = UIImage(systemName: "heart")!
         bookmarkHeartView.tintColor = UIColor(red: 135/255, green: 200/255, blue: 188/255, alpha: 1)
+        bookmarkHeartView.translatesAutoresizingMaskIntoConstraints = false
         return bookmarkHeartView
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setupCell()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setupCell() {
         addSubview(userPhotoView)
         addSubview(usernameLabel)
         addSubview(userHashTagLabel)
         addSubview(userItemCountLabel)
         addSubview(bookmarkHeartView)
-        
-        userPhotoView.translatesAutoresizingMaskIntoConstraints = false
-        usernameLabel.translatesAutoresizingMaskIntoConstraints = false
-        userHashTagLabel.translatesAutoresizingMaskIntoConstraints = false
-        userItemCountLabel.translatesAutoresizingMaskIntoConstraints = false
-        bookmarkHeartView.translatesAutoresizingMaskIntoConstraints = false
         
         let safeArea = safeAreaLayoutGuide
         
@@ -82,11 +89,6 @@ class BookmarkTableViewCell: UITableViewCell {
         ])
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    // MARK: - configureCell
     func configureCell(userInfoEntry: UserInfoEntry) {
         var refrigeratorItems: [[String: String]] = []
         var graveItems: [[String: String]] = []

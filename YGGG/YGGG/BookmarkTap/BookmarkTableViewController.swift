@@ -7,16 +7,26 @@
 
 import UIKit
 
-class BookmarkTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UIPopoverPresentationControllerDelegate {
+class BookmarkTableViewController: UIViewController {
     
-    lazy var tableView: UITableView = {
+    private lazy var tableView: UITableView = {
         let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
     
-    var datas = UserInfoEntry.sampleDatas
-    let search = UISearchController(searchResultsController: nil)
-    let customSearchBar = CustomSearchBar()
+    private lazy var search: UISearchController = {
+        let search = UISearchController(searchResultsController: nil)
+        return search
+    }()
+    
+    private lazy var customSearchBar: CustomSearchBar = {
+        let customSearchBar = CustomSearchBar()
+        customSearchBar.translatesAutoresizingMaskIntoConstraints = false
+        return customSearchBar
+    }()
+    
+    let datas = UserInfoEntry.sampleDatas
     var filteredTableData: [UserInfoEntry] = []
     
     override func viewDidLoad() {
@@ -24,22 +34,17 @@ class BookmarkTableViewController: UIViewController, UITableViewDataSource, UITa
         
         view.backgroundColor = .white
         
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.register(BookmarkTableViewCell.self, forCellReuseIdentifier: "bookmarkCell")
+        setupCustomSearchBar()
+        setupTableView()
         
-        view.addSubview(tableView)
-        tableView.translatesAutoresizingMaskIntoConstraints = false
+        self.navigationController?.isNavigationBarHidden = true
+    }
+    
+    private func setupCustomSearchBar() {
         view.addSubview(customSearchBar)
-        customSearchBar.translatesAutoresizingMaskIntoConstraints = false
         
         let safeArea = view.safeAreaLayoutGuide
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: customSearchBar.bottomAnchor, constant: 10),
-            tableView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 24),
-            tableView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -24),
-            tableView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor),
-            
             customSearchBar.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 10),
             customSearchBar.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 5),
             customSearchBar.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -5),
@@ -60,14 +65,31 @@ class BookmarkTableViewController: UIViewController, UITableViewDataSource, UITa
             
             self.present(searchInfoViewController, animated: true, completion: nil)
         }, for: .touchUpInside)
+        
         search.setValue(customSearchBar, forKey: "searchBar")
         search.obscuresBackgroundDuringPresentation = false
         search.searchBar.placeholder = "계정 및 해시태그 검색"
         search.searchBar.delegate = self
-        
-        self.navigationController?.isNavigationBarHidden = true
-        
     }
+    
+    private func setupTableView() {
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(BookmarkTableViewCell.self, forCellReuseIdentifier: "bookmarkCell")
+        view.addSubview(tableView)
+        
+        let safeArea = view.safeAreaLayoutGuide
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: customSearchBar.bottomAnchor, constant: 10),
+            tableView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 24),
+            tableView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -24),
+            tableView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor),
+        ])
+    }
+    
+}
+
+extension BookmarkTableViewController: UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UIPopoverPresentationControllerDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         datas.count
@@ -98,6 +120,6 @@ class BookmarkTableViewController: UIViewController, UITableViewDataSource, UITa
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
         return .none
     }
-
+    
 }
 

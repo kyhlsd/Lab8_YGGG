@@ -71,6 +71,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		15A01A3F2C119F2600C4FC47 /* BookmarkTap */ = {
+			isa = PBXGroup;
+			children = (
+				15A01A3D2C10003F00C4FC47 /* CustomSearchBar.swift */,
+				15A01A3B2C10001700C4FC47 /* SearchInfoViewController.swift */,
+				151AA1542C0EDDCD000800DF /* BookmarkTableViewController.swift */,
+				151AA1502C0EDD22000800DF /* BookmarkTableViewCell.swift */,
+			);
+			path = BookmarkTap;
+			sourceTree = "<group>";
+		};
 		41CCE8592C0EC83300A09411 = {
 			isa = PBXGroup;
 			children = (
@@ -90,6 +101,7 @@
 		41CCE8642C0EC83300A09411 /* YGGG */ = {
 			isa = PBXGroup;
 			children = (
+				15A01A3F2C119F2600C4FC47 /* BookmarkTap */,
 				41EB8EF42C10BBAF001DBF2A /* Extension */,
 				41EB8EDF2C108AE5001DBF2A /* Profile */,
 				41CCE8792C0EC9FD00A09411 /* GoogleService-Info.plist */,
@@ -99,11 +111,7 @@
 				41CCE86E2C0EC83400A09411 /* Assets.xcassets */,
 				41CCE8702C0EC83400A09411 /* LaunchScreen.storyboard */,
 				41CCE8732C0EC83400A09411 /* Info.plist */,
-				151AA1502C0EDD22000800DF /* BookmarkTableViewCell.swift */,
 				151AA1522C0EDD6C000800DF /* UserInfoEntry.swift */,
-				151AA1542C0EDDCD000800DF /* BookmarkTableViewController.swift */,
-				15A01A3B2C10001700C4FC47 /* SearchInfoViewController.swift */,
-				15A01A3D2C10003F00C4FC47 /* CustomSearchBar.swift */,
 			);
 			path = YGGG;
 			sourceTree = "<group>";
@@ -369,7 +377,6 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = YGGG/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = "";
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -398,7 +405,6 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = YGGG/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = "";
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

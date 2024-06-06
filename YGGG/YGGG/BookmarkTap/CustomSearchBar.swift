@@ -5,11 +5,11 @@
 //  Created by 김영훈 on 6/5/24.
 //
 
-import SwiftUI
+import UIKit
 
 class CustomSearchBar: UISearchBar {
     
-    var infoButton: UIButton = {
+    lazy var infoButton: UIButton = {
         let infoButton = UIButton(type: .infoLight)
         infoButton.setImage(UIImage(systemName: "info.circle"), for: .normal)
         return infoButton
@@ -18,7 +18,6 @@ class CustomSearchBar: UISearchBar {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupInfoButton()
-        removeSearchBarBackground()
     }
     
     required init?(coder: NSCoder) {
@@ -35,9 +34,8 @@ class CustomSearchBar: UISearchBar {
             infoButton.widthAnchor.constraint(equalToConstant: 26),
             infoButton.heightAnchor.constraint(equalToConstant: 26)
         ])
-    }
-    
-    private func removeSearchBarBackground() {
+        
         setBackgroundImage(UIImage(), for: .any, barMetrics: .default)
     }
+    
 }
