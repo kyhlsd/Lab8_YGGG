@@ -27,6 +27,20 @@ class UserInfoEntry {
         ]),
         UserInfoEntry(name: "song", email: "email2@email.com", hashTags: ["#건조","#수부지","#민감성","#홍조"], items:[
             ["itemName" : "로션","expirationDate" : "20250605"],
+        ]),
+        UserInfoEntry(name: "yeonghun", email: "email@email.com", hashTags: ["#건조","#수부지","#민감성","#홍조"], items: [
+            ["itemName" : "로션","expirationDate" : "20250605"],
+            ["itemName" : "선크림","expirationDate" : "20240604"]
+        ]),
+        UserInfoEntry(name: "chunghyeon", email: "email2@email.com", hashTags: ["#건조","#수부지","#민감성","#홍조"], items:[
+            ["itemName" : "로션","expirationDate" : "20250605"],
+        ]),
+        UserInfoEntry(name: "yunwon2", email: "email@email.com", hashTags: ["#건조","#수부지","#민감성","#홍조"], items: [
+            ["itemName" : "로션","expirationDate" : "20250605"],
+            ["itemName" : "선크림","expirationDate" : "20240604"]
+        ]),
+        UserInfoEntry(name: "song2", email: "email2@email.com", hashTags: ["#건조","#수부지","#민감성","#홍조"], items:[
+            ["itemName" : "로션","expirationDate" : "20250605"],
         ])
     ]
 }

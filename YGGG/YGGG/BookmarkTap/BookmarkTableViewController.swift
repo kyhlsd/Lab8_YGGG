@@ -36,6 +36,7 @@ class BookmarkTableViewController: UIViewController {
         
         setupCustomSearchBar()
         setupTableView()
+        setupTapGesture()
         
         self.navigationController?.isNavigationBarHidden = true
     }
@@ -87,6 +88,14 @@ class BookmarkTableViewController: UIViewController {
         ])
     }
     
+    private func setupTapGesture() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func dismissKeyboard() {
+        customSearchBar.resignFirstResponder()
+    }
 }
 
 extension BookmarkTableViewController: UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UIPopoverPresentationControllerDelegate {
@@ -115,6 +124,10 @@ extension BookmarkTableViewController: UITableViewDataSource, UITableViewDelegat
                 customSearchBar.infoButton.isHidden = true
             }
         }
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
     }
     
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
