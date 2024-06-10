@@ -37,6 +37,7 @@ class BookmarkTableViewController: UIViewController {
         setupCustomSearchBar()
         setupTableView()
         setupTapGesture()
+        setupObserver()
         
         self.navigationController?.isNavigationBarHidden = true
     }
@@ -93,8 +94,27 @@ class BookmarkTableViewController: UIViewController {
         view.addGestureRecognizer(tapGesture)
     }
     
+    private func setupObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+    }
+    
     @objc func dismissKeyboard() {
         customSearchBar.resignFirstResponder()
+    }
+    
+    @objc func keyboardWillShow(_ notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            let keyboardHeight = keyboardSize.height
+            view.frame.size.height -= keyboardHeight
+        }
+    }
+    
+    @objc func keyboardWillHide(_ notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            let keyboardHeight = keyboardSize.height
+            view.frame.size.height += keyboardHeight
+        }
     }
 }
 
